@@ -1,0 +1,507 @@
+FORMAT: 1A
+HOST: http://private-92a6b-diegovalladares.apiary-mock.com/
+
+# Sistema control de tráfico urbano
+Servicios para el sistema de control de tráfico urbano
+
+## Videos [/videos/{id}]
+Recurso videos
+
+Atributos Obligatorios: 
+
+- `id`          Autoincrementable
+- `status`
+- `inicio_transmision`
+
+
++ Parameters
+    + id (required, int) ... PK video
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 1,
+                "inicio_transmision": "05-09-2015 11:00",
+                "fin_transmision": "06-09-2015 12:00",
+                "tamano_video": "1 GB",
+                "descargar_video": "http://ejemplo/download/video_1"
+            }
+            
+## Buscar Video [GET]
+
++ Response 200 (application/json)
+
+    [Videos][]
+
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+
++ Response 404
+
+        { 
+            "error": "Recurso no disponible"
+        }
+
++ Response 400
+
+        { 
+            "error": "Fallo al modificar el Recurso"
+        }
+
+## Eliminar Video [DELETE]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Video eliminado con éxito"
+        }
+
++ Response 201
+
+    [Videos][]
+    
++ Response 400
+
+        { 
+            "error": "Error al crear video"
+        }
+
+# Lista de videos [/videos]
+Obtener todos los videos
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "videos": [
+                    {
+                        "id": 1,
+                        "inicio_transmision": "05-09-2015 11:00",
+                        "fin_transmision": "06-09-2015 12:00",
+                        "tamano_video": "1 GB",
+                        "descargar_video": "http://ejemplo/download/video_1"
+                    },
+                    {
+                        "id": 2,
+                        "inicio_transmision": "05-09-2015 11:00",
+                        "fin_transmision": "06-09-2015 12:00",
+                        "tamano_video": "1 GB",
+                        "descargar_video": "http://ejemplo/download/video_2"
+                    },{
+                        "id": 3,
+                        "inicio_transmision": "05-09-2015 11:00",
+                        "fin_transmision": "06-09-2015 12:00",
+                        "tamano_video": "1 GB",
+                        "descargar_video": "http://ejemplo/download/video_3"
+                    }
+                ]
+            }
+
+
+## Obtener lista de videos [GET]
+
++ Response 200
+
+    [Lista de videos][]
+
+
+# Reproducir Video [/videos/{id}/reproducir]
+Reproducir video 
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 3,
+                "status": "offline",
+                "inicio_transmision": "05-09-2015 11:00",
+                "fin_transmision":"06-09-2015 22:00"
+            }
+
+
+## Buscar y reproducir video [GET]
+
++ Response 200
+
+    [Reproducir Video][]
+
+
+## Camaras [/camaras/{id}]
+Recurso Cámaras 
+
+Atributos Obligatorios: 
+
+- `id`          Autoincrementable
+- `marca`
+- `brillo`
+- `calidad`
+- `color`
+- `contraste`
+- `ip`
+- `coordenadas`
+
+
++ Parameters
+    + id (required, int) ... PK Cámara
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 1,
+                "marca":"Camara x HD Pro 1",
+                "fecha_add":"05-09-2015",
+                "ip":"192.168.1.100",
+                "latitud":"-33.000101",
+                "longitud":"-77.01212",
+                "configuración":{
+                    "brillo": 10,
+                    "calidad": "720p",
+                    "color":"rgba(0,0,0)",
+                    "contraste":30
+                }
+            }
+            
+## Buscar Cámara [GET]
+
++ Response 200 (application/json)
+
+    [Camaras][]
+    
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+    
+### Editar Cámara [PATCH]
+
++ Request (application/json)
+
+        {
+            "brillo": 20,
+            "contraste": 20,
+        }
+
++ Response 200
+    
+    [Camaras][]
+
++ Response 404
+
+        { 
+            "error": "Recurso no disponible"
+        }
+
++ Response 400
+
+        { 
+            "error": "Fallo al modificar el Recurso"
+        }
+
+## Eliminar Cámara [DELETE]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Cámara eliminada con éxito"
+        }
+
+## Nuevo Cámara [POST]
+
++ Request (application/json)
+
+        {
+            "id": 2,
+            "marca":"Camara x HD Pro 2",
+            "fecha_add":"05-09-2015",
+            "configuración":{
+                "brillo": 10,
+                "calidad": "720p",
+                "color":"rgba(0,0,0)",
+                "contraste":30
+            }
+        }
+
++ Response 201
+
+    [Camaras][]
+    
++ Response 400
+
+        { 
+            "error": "Error al crear cámara"
+        }
+
+# Lista de camaras [/camaras]
+Obtener todas las cámaras registradas
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "camaras": [
+                    {
+                        "id": 1,
+                        "marca":"Camara x HD Pro 1",
+                        "fecha_add":"05-09-2015",
+                        "ip":"192.168.1.100",
+                        "latitud":"-33.000101",
+                        "longitud":"-77.01212",
+                        "configuración":{
+                            "brillo": 10,
+                            "calidad": "720p",
+                            "color":"rgba(0,0,0)",
+                            "contraste":"30"
+                        }
+                    },{
+                        "id": 1,
+                        "marca":"Camara x HD Pro 1",
+                        "fecha_add":"05-09-2015",
+                        "ip":"192.168.1.101",
+                        "latitud":"-33.000101",
+                        "longitud":"-77.01212",
+                        "configuración":{
+                            "brillo": 10,
+                            "calidad": "720p",
+                            "color":"rgba(0,0,0)",
+                            "contraste":"30"
+                        }
+                    }
+                ]
+            }
+
+
+## Obtener lista de cámaras [GET]
+
++ Response 200
+
+    [Lista de camaras][]
+
+# Transmitir video [/camaras/{id}/transmitir]
+Transmitir video
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 1,
+                "marca":"Camara x HD Pro 1",
+                "fecha_add":"05-09-2015",
+                "ip":"192.168.1.100",
+                "latitud":"-33.000101",
+                "longitud":"-77.01212",
+                "configuración":{
+                    "brillo": 10,
+                    "calidad": "720p",
+                    "color":"rgba(0,0,0)",
+                    "contraste":"30"
+                },
+                "Video":{
+                    "id": 1,
+                    "descargar_video": "http://ejemplo/download/video_1"
+                },
+                "broadcast":{
+                    "id": 1,
+                    "inicio_broadcast":"05-09-2015 18:00",
+                    "descripción": "Descripción video tiempo real",
+                    "source":"http://ejemplo/broadcast/1/play",
+                }
+            }
+
+
+## Buscar y transmitir video [GET]
+
++ Response 200
+
+    [Transmitir video][]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## GrabarCD [/grabar-video/{id}]
+Grabar video CD
+
+Atributos Obligatorios: 
+
+- `id`          Autoincrementable
+- `tasa_vehiculo`
+- `tipo_fichero`
+- `compresion`
+
+
++ Parameters
+    + id (required, int) ... PK Video
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 1,
+                "inicio_grabación":"05-09-2015 18:00",
+                "tasa_vehiculo": "-",
+                "tipo_fichero":"avi",
+                "compresion":"format-x"
+            }
+            
+## Buscar video - CD [GET]
+
++ Response 200 (application/json)
+
+    [GrabarCD][]
+    
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+
+## Detener grabación video - CD [DELETE]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Detener grabación video - cd"
+        }
+
+## Nueva grabación video - CD [POST]
+
++ Request (application/json)
+
+        {
+            "tasa_vehiculo": "-",
+            "tipo_fichero":"avi",
+            "compresion":"format-x"
+        }
+
++ Response 201
+
+    [GrabarCD][]
+    
++ Response 400
+
+        { 
+            "error": "Error al crear cd-video"
+        }
+
+
+
+
+## broadcast [/broadcast/{id}]
+Reproducir video en tiempo real
+
+Atributos Obligatorios: 
+
+- `id`          Autoincrementable
+- `descripcion` 
+
+
++ Parameters
+    + id (required, int) ... PK broadcast
+
++ Model (application/hal+json)
+
+    + Body
+
+            {
+                "id": 1,
+                "inicio_broadcast":"05-09-2015 18:00",
+                "descripción": "Descripción video tiempo real",
+                "source":"http://ejemplo/broadcast/1/play",
+                "camara":{
+                    "id": 1,
+                    "marca":"Camara x HD Pro 1",
+                    "fecha_add":"05-09-2015",
+                    "ip":"192.168.1.100",
+                    "latitud":"-33.000101",
+                    "longitud":"-77.01212",
+                    "configuración":{
+                        "brillo": 10,
+                        "calidad": "720p",
+                        "color":"rgba(0,0,0)",
+                        "contraste":"30"
+                    }
+                },
+                "video":{
+                    "id": 1,
+                    "descargar_video": "http://ejemplo/download/video_1"
+                }
+            }
+            
+## Buscar broadcast [GET]
+
++ Response 200 (application/json)
+
+    [broadcast][]
+    
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+
+### Editar broadcast [PATCH]
+
++ Request (application/json)
+
+        {
+            "descripción": "prueba descripción broadcast"
+        }
+
++ Response 200
+    
+    [Camaras][]
+
++ Response 404
+
+        { 
+            "error": "Recurso no disponible"
+        }
+
++ Response 400
+
+        { 
+            "error": "Fallo al modificar el Recurso"
+        }
+
+## Detener broadcast [DELETE]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Se detuvo broadcast"
+        }
