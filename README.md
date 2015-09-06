@@ -70,3 +70,31 @@ Buscar video por su identificador único (ID)
             "result": True,
             "message": "Video eliminado con éxito"
         }
+
+## Reproducir video almacenado [GET /videos/{id}/reproducir]
+
++ Parameters
+    + id (int) ID Video
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "inicio_transmision": "05-09-2015 11:00",
+            "fin_transmision": "06-09-2015 12:00",
+            "tamano_video": "1 GB",
+            "descargar_video": "http://ejemplo/download/video_1"
+            "source_video":"http//ejemplovideo/replay/1"
+        }
+        
+# Camaras [/camaras/{?id}]
+
++ Parámetros
+    + id (int) ID Cámara
+    + marca
+    + brillo
+    + calidad
+    + color
+    + contraste
+    + ip
+    + coodenadas
