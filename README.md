@@ -266,3 +266,162 @@ Buscar video por su identificador único (ID)
                 "fps":30
             }
         }
+
+# GrabarCD [/grabar-video/{id}]
+
++ Parámetros
+    + id (int) ID Grabación Video CD
+    + tasa_vehiculo
+    + tipo_fichero
+    + compresion
+
+## Buscar video - CD [GET /grabar-video/{id}]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "inicio_grabación":"05-09-2015 18:00",
+            "tasa_vehiculo": "-",
+            "tipo_fichero":"avi",
+            "compresion":"format-x",
+            "secuencias_grabadas":100,
+            "total_secuencias":5881,
+            "video":{
+                "id": 2,
+                "inicio_transmision": "05-09-2015 11:00",
+                "fin_transmision": "06-09-2015 12:00",
+                "tamano_video": "1 GB",
+            }
+
+        }
+    
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+
+## Detener grabación video - CD [DELETE /grabar-video/{id}]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Detener grabación video - cd"
+        }
+
+## Nueva grabación video - CD [POST /grabar-video/]
+
++ Request (application/json)
+
+        {
+            "tasa_vehiculo": "-",
+            "tipo_fichero":"avi",
+            "compresion":"format-x",
+            "id_video":1
+        }
+
++ Response 201
+
+        {
+            "id": 1,
+            "inicio_grabación":"05-09-2015 18:00",
+            "tasa_vehiculo": "-",
+            "tipo_fichero":"avi",
+            "compresion":"format-x",
+            "secuencias_grabadas":100,
+            "total_secuencias":5881,
+            "video":{
+                "id": 2,
+                "inicio_transmision": "05-09-2015 11:00",
+                "fin_transmision": "06-09-2015 12:00",
+                "tamano_video": "1 GB",
+            }
+
+        }
+    
++ Response 400
+
+        { 
+            "error": "Error al crear cd-video"
+        }
+
+
+# Broadcast [/broadcast/{id}]
+
++ Parámetros
+    + id (int) ID Broadcast
+    + descripcion
+
+## Buscar broadcast [GET /broadcast/{id}]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "inicio_broadcast":"05-09-2015 18:00",
+            "descripción": "Descripción video tiempo real",
+            "source":"http://ejemplo/broadcast/1/play",
+            "fps":30,
+            "camara":{
+                "id": 1,
+                "marca":"Camara x HD Pro 1",
+                "fecha_add":"05-09-2015",
+                "ip":"192.168.1.100",
+                "latitud":"-33.000101",
+                "longitud":"-77.01212",
+                "configuración":{
+                    "brillo": 10,
+                    "calidad": "720p",
+                    "color":"rgba(0,0,0)",
+                    "contraste":"30"
+                }
+            },
+            "video":{
+                "id": 1,
+                "descargar_video": "http://ejemplo/download/video_1"
+            }
+        }
+    
++ Response 404 (application/json)
+
+        { 
+            "error": "Recurso no se encuentra" 
+        }
+
+## Editar broadcast [PATCH /broadcast/{id}]
+
++ Request (application/json)
+
+        {
+            "descripción": "prueba descripción broadcast"
+        }
+
++ Response 200
+    
+        { 
+            "result": True,
+            "message": "broadcast editado con éxito"
+        }
+
++ Response 404
+
+        { 
+            "error": "Recurso no disponible"
+        }
+
++ Response 400
+
+        { 
+            "error": "Fallo al modificar el Recurso"
+        }
+        
+## Detener broadcast [DELETE /broadcast/{id}]
+
++ Response 200
+
+        { 
+            "result": True,
+            "message": "Se detuvo broadcast"
+        }
