@@ -10,7 +10,6 @@ Recurso videos
 Atributos Obligatorios: 
 
 - `id`          Autoincrementable
-- `status`
 - `inicio_transmision`
 
 
@@ -62,15 +61,8 @@ Atributos Obligatorios:
             "message": "Video eliminado con éxito"
         }
 
-+ Response 201
-
     [Videos][]
     
-+ Response 400
-
-        { 
-            "error": "Error al crear video"
-        }
 
 # Lista de videos [/videos]
 Obtener todos los videos
@@ -217,20 +209,17 @@ Atributos Obligatorios:
             "message": "Cámara eliminada con éxito"
         }
 
-## Nuevo Cámara [POST]
+## Nueva Cámara [POST]
 
 + Request (application/json)
 
         {
-            "id": 2,
             "marca":"Camara x HD Pro 2",
             "fecha_add":"05-09-2015",
-            "configuración":{
-                "brillo": 10,
-                "calidad": "720p",
-                "color":"rgba(0,0,0)",
-                "contraste":30
-            }
+            "brillo": 10,
+            "calidad": "720p",
+            "color":"rgba(0,0,0)",
+            "contraste":30
         }
 
 + Response 201
@@ -318,6 +307,7 @@ Transmitir video
                     "inicio_broadcast":"05-09-2015 18:00",
                     "descripción": "Descripción video tiempo real",
                     "source":"http://ejemplo/broadcast/1/play",
+                    "fps":30
                 }
             }
 
@@ -373,7 +363,16 @@ Atributos Obligatorios:
                 "inicio_grabación":"05-09-2015 18:00",
                 "tasa_vehiculo": "-",
                 "tipo_fichero":"avi",
-                "compresion":"format-x"
+                "compresion":"format-x",
+                "secuencias_grabadas":100,
+                "total_secuencias":5881,
+                "video":{
+                    "id": 2,
+                    "inicio_transmision": "05-09-2015 11:00",
+                    "fin_transmision": "06-09-2015 12:00",
+                    "tamano_video": "1 GB",
+                }
+
             }
             
 ## Buscar video - CD [GET]
@@ -404,7 +403,8 @@ Atributos Obligatorios:
         {
             "tasa_vehiculo": "-",
             "tipo_fichero":"avi",
-            "compresion":"format-x"
+            "compresion":"format-x",
+            "id_video":1
         }
 
 + Response 201
@@ -441,6 +441,7 @@ Atributos Obligatorios:
                 "inicio_broadcast":"05-09-2015 18:00",
                 "descripción": "Descripción video tiempo real",
                 "source":"http://ejemplo/broadcast/1/play",
+                "fps":30,
                 "camara":{
                     "id": 1,
                     "marca":"Camara x HD Pro 1",
@@ -473,7 +474,7 @@ Atributos Obligatorios:
             "error": "Recurso no se encuentra" 
         }
 
-### Editar broadcast [PATCH]
+## Editar broadcast [PATCH]
 
 + Request (application/json)
 
@@ -483,7 +484,10 @@ Atributos Obligatorios:
 
 + Response 200
     
-    [Camaras][]
+        { 
+            "result": True,
+            "message": "broadcast editado con éxito"
+        }
 
 + Response 404
 
