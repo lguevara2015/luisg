@@ -19,11 +19,28 @@ Github: https://github.com/dvdeveloper/apiary-TraficoUrbano
 + Response 200 (application/json)
 
         {
-            "id": 1,
-            "inicio_transmision": "05-09-2015 11:00",
-            "fin_transmision": "06-09-2015 12:00",
-            "tamano_video": "1 GB",
-            "descargar_video": "http://ejemplo/download/video_1"
+            "videos": [
+                {
+                    "id": 1,
+                    "inicio_transmision": "05-09-2015 11:00",
+                    "fin_transmision": "06-09-2015 12:00",
+                    "tamano_video": "1 GB",
+                    "descargar_video": "http://ejemplo/download/video_1"
+                },
+                {
+                    "id": 2,
+                    "inicio_transmision": "05-09-2015 11:00",
+                    "fin_transmision": "06-09-2015 12:00",
+                    "tamano_video": "1 GB",
+                    "descargar_video": "http://ejemplo/download/video_2"
+                },{
+                    "id": 3,
+                    "inicio_transmision": "05-09-2015 11:00",
+                    "fin_transmision": "06-09-2015 12:00",
+                    "tamano_video": "1 GB",
+                    "descargar_video": "http://ejemplo/download/video_3"
+                }
+            ]
         }
 
 ## Buscar video [GET /videos/{id}]
@@ -35,10 +52,11 @@ Buscar video por su identificador único (ID)
 + Response 200 (application/json)
 
         {
-            "id": 123,
-            "name": "Go to gym",
-            "done": false,
-            "type": "task"
+            "id": 1,
+            "inicio_transmision": "05-09-2015 11:00",
+            "fin_transmision": "06-09-2015 12:00",
+            "tamano_video": "1 GB",
+            "descargar_video": "http://ejemplo/download/video_1"
         }
 
 ## Eliminar video [DELETE /videos/{id}]
