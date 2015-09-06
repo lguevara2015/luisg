@@ -74,7 +74,7 @@ Buscar video por su identificador único (ID)
 ## Reproducir video almacenado [GET /videos/{id}/reproducir]
 
 + Parameters
-    + id (int) ID Video
+    + id (int) ID Videon
 
 + Response 200 (application/json)
 
@@ -206,7 +206,7 @@ Buscar video por su identificador único (ID)
             "message": "Cámara eliminada con éxito"
         }
 
-## Nuevo Cámara [POST /camaras]
+## Añadir Cámara [POST /camaras]
 
 + Request (application/json)
 
